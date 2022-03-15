@@ -6,7 +6,7 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: chatter
+      MYSQL_DATABASE: course
       MYSQL_USER: spring
       MYSQL_PASSWORD: spring
     ports:
@@ -16,19 +16,12 @@ services:
   spring:
     container_name: springapp
     restart: always
-    image: testchatter:latest
+    image: course:latest
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://docker-mysql/chatter?useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://docker-mysql/course?useSSL=false&allowPublicKeyRetrieval=true
       SPRING_DATASOURCE_USERNAME: spring
       SPRING_DATASOURCE_PASSWORD: spring
       SPRING_PORT: 5000
-    # build:
-    #   context: .
-    #   args:
-    #     SPRING_DATASOURCE_URL: jdbc:mysql://docker-mysql/chatter?useSSL=false&allowPublicKeyRetrieval=true
-    #     SPRING_DATASOURCE_USERNAME: spring
-    #     SPRING_DATASOURCE_PASSWORD: spring
-    #   Dockerfile: Dockerfile
     ports:
       - "5000:5000"
     networks:
