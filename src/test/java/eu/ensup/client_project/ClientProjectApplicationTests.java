@@ -3,11 +3,11 @@ package eu.ensup.client_project;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class ClientProjectApplicationTests {
-
-    @Test
-    void contextLoads() {
-    }
-
-}
+//@SpringBootTest
+//class ClientProjectApplicationTests {
+//
+//    @Test
+//    void contextLoads() {
+//    }
+//
+//}

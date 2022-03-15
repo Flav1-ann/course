@@ -10,7 +10,7 @@ RUN apk update && \
     apk add maven &&\
     apk add bash
 
-RUN git clone
+RUN git clone https://github.com/Flav1-ann/course /course
 
 WORKDIR /course
 
