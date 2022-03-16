@@ -19,6 +19,9 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * The type User controller.
+ */
 @Controller
 @Log4j2
 public class UserController {
@@ -27,12 +30,26 @@ public class UserController {
     @Autowired
     private StudentRepository studentRepository;
 
+    /**
+     * View create user page string.
+     *
+     * @param model the model
+     * @return the string
+     */
     @GetMapping("/CreatedUser")
     public String viewCreateUserPage(Model model) {
         model.addAttribute("student", new Student());
         return "createdUser";
     }
 
+    /**
+     * Login page string.
+     *
+     * @param model      the model
+     * @param session    the session
+     * @param loginError the login error
+     * @return the string
+     */
     @GetMapping("/login")
     public String loginPage(Model model,HttpSession session,@RequestParam(value = "error", defaultValue = "false") boolean loginError) {
         session.removeAttribute("error");
@@ -42,6 +59,13 @@ public class UserController {
             return "login";
     }
 
+    /**
+     * Save user string.
+     *
+     * @param user    the user
+     * @param session the session
+     * @return the string
+     */
     @PostMapping("/save")
     public String saveUser(@ModelAttribute Student user,HttpSession session) {
         session.removeAttribute("success");
@@ -59,9 +83,18 @@ public class UserController {
         return "createdUser";
     }
 
+    /**
+     * The constant VALID_EMAIL_ADDRESS_REGEX.
+     */
     public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
             Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
+    /**
+     * Validate boolean.
+     *
+     * @param emailStr the email str
+     * @return the boolean
+     */
     public static boolean validate(String emailStr) {
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
         return matcher.find();

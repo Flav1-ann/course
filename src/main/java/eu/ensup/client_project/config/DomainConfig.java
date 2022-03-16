@@ -6,6 +6,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 
+/**
+ * The type Domain config.
+ */
 @Configuration
 @EntityScan("eu.ensup.client_project.domaine")
 @EnableJpaRepositories("eu.ensup.client_project.repository")

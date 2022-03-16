@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">client_project</a> &gt; <a href="index.source.html" class="el_package">eu.ensup.client_project.controller</a> &gt; <span class="el_source">UserController.java</span></div><h1>UserController.java</h1><pre class="source lang-java linenums">package eu.ensup.client_project.controller;
+
+import eu.ensup.client_project.domaine.Student;
+import eu.ensup.client_project.repository.StudentRepository;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpSession;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+@Controller
+<span class="fc" id="L23">@Log4j2</span>
+<span class="fc" id="L24">public class UserController {</span>
+
+
+    @Autowired
+    private StudentRepository studentRepository;
+
+    @GetMapping(&quot;/CreatedUser&quot;)
+    public String viewCreateUserPage(Model model) {
+<span class="fc" id="L32">        model.addAttribute(&quot;student&quot;, new Student());</span>
+<span class="fc" id="L33">        return &quot;createdUser&quot;;</span>
+    }
+
+    @GetMapping(&quot;/login&quot;)
+    public String loginPage(Model model,HttpSession session,@RequestParam(value = &quot;error&quot;, defaultValue = &quot;false&quot;) boolean loginError) {
+<span class="fc" id="L38">        session.removeAttribute(&quot;error&quot;);</span>
+<span class="pc bpc" id="L39" title="1 of 2 branches missed.">        if (loginError) {</span>
+<span class="nc" id="L40">            session.setAttribute(&quot;error&quot;, &quot;Mauvais login ou mot de passe!&quot;);</span>
+        }
+<span class="fc" id="L42">            return &quot;login&quot;;</span>
+    }
+
+    @PostMapping(&quot;/save&quot;)
+    public String saveUser(@ModelAttribute Student user,HttpSession session) {
+<span class="fc" id="L47">        session.removeAttribute(&quot;success&quot;);</span>
+<span class="pc bpc" id="L48" title="7 of 12 branches missed.">        if (!&quot;&quot;.equals(user.getEmail()) &amp;&amp; !&quot;&quot;.equals(user.getLastName())  &amp;&amp; !&quot;&quot;.equals(user.getName())  &amp;&amp; !&quot;&quot;.equals(user.getAdress())&amp;&amp; null != user.getBithday() &amp;&amp; !&quot;&quot;.equals(user.getPhone()))</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">            if (validate(user.getEmail()))</span>
+            {
+<span class="nc" id="L51">                studentRepository.save(user);</span>
+<span class="nc" id="L52">                session.setAttribute(&quot;success&quot;, &quot;L'étudiant à été créé.&quot;);</span>
+            }
+            else
+<span class="nc" id="L55">                session.setAttribute(&quot;error&quot;, &quot;L'adresse mail n'est pas sous le bon format&quot;);</span>
+        else
+<span class="fc" id="L57">            session.setAttribute(&quot;error&quot;, &quot;Tout les champs ne sont pas remplis&quot;);</span>
+
+<span class="fc" id="L59">        return &quot;createdUser&quot;;</span>
+    }
+
+<span class="fc" id="L62">    public static final Pattern VALID_EMAIL_ADDRESS_REGEX =</span>
+<span class="fc" id="L63">            Pattern.compile(&quot;^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$&quot;, Pattern.CASE_INSENSITIVE);</span>
+
+    public static boolean validate(String emailStr) {
+<span class="fc" id="L66">        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);</span>
+<span class="fc" id="L67">        return matcher.find();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

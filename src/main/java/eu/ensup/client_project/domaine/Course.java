@@ -4,6 +4,9 @@ import lombok.*;
 
 import javax.persistence.*;
 
+/**
+ * The type Course.
+ */
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor

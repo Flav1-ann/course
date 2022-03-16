@@ -7,6 +7,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 
+/**
+ * The type Security config.
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -16,12 +19,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-            .antMatchers("/**","/login","/home","/save","/assets/**").permitAll()
+            .antMatchers("/","/login","/home","/save","/assets/**").permitAll()
             .anyRequest().authenticated()
             .and()
             .formLogin()
             .loginPage("/login")
-            .defaultSuccessUrl("/", true)
+            .defaultSuccessUrl("/home", true)
             .failureUrl("/login?error=true")
             .permitAll()
             .and()

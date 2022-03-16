@@ -21,6 +21,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * The type User controller test.
+ */
 @SpringBootTest
 @AutoConfigureMockMvc
 class UserControllerTest {
@@ -30,24 +33,47 @@ class UserControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
+    /**
+     * The Session.
+     */
     @Autowired
     MockHttpSession session;
+
+    /**
+     * View create user page.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void viewCreateUserPage() throws Exception {
         mockMvc.perform(get("/CreatedUser")).andExpect(status().isOk());
 
     }
 
+    /**
+     * Login page.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void loginPage() throws Exception {
         mockMvc.perform(get("/login")).andExpect(status().isOk());
     }
+
+    /**
+     * Sets attribute.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void setAttribute() throws Exception {
         session.setAttribute("error", "value");
         assertEquals(session.getAttribute("error"),"value");
     }
 
+    /**
+     * Remove session.
+     */
     @Test
     void removeSession(){
         session.setAttribute("rem", "value");
@@ -55,6 +81,11 @@ class UserControllerTest {
         Assertions.assertNull(session.getAttribute("rem"));
     }
 
+    /**
+     * Save user.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void saveUser() throws Exception {
         //mockMvc.perform(post("/save")).andExpect(status().isOk()).andExpect(status().isOk());
@@ -65,11 +96,21 @@ class UserControllerTest {
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(200));
     }
+
+    /**
+     * Validate email.
+     */
     @Test
     void validateEmail(){
         Assertions.assertTrue(userController.validate("flavien@gmail.com"));
     }
 
+    /**
+     * As json string string.
+     *
+     * @param obj the obj
+     * @return the string
+     */
     public static String asJsonString(final Object obj) {
         try {
             final ObjectMapper mapper = new ObjectMapper();

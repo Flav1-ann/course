@@ -4,6 +4,9 @@ import lombok.*;
 
 import javax.persistence.*;
 
+/**
+ * The type Person.
+ */
 @MappedSuperclass
 @Getter
 @Setter

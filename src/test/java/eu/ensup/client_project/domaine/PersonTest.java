@@ -5,40 +5,61 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The type Person test.
+ */
 class PersonTest {
 
     private static Person personGet =  new Person(1l,"name","adress","email","025874");
     private static Person personSet =  new Person(2l,"name","adress","email","025874");
 
+    /**
+     * Gets id.
+     */
     @Test
     void getId() {
         Assertions.assertEquals(personGet.getId(),1l);
     }
 
+    /**
+     * Gets name.
+     */
     @Test
     void getName() {
         Assertions.assertEquals(personGet.getName(),"name");
 
     }
 
+    /**
+     * Gets adress.
+     */
     @Test
     void getAdress() {
         Assertions.assertEquals(personGet.getAdress(),"adress");
 
     }
 
+    /**
+     * Gets email.
+     */
     @Test
     void getEmail() {
         Assertions.assertEquals(personGet.getEmail(),"email");
 
     }
 
+    /**
+     * Gets phone.
+     */
     @Test
     void getPhone() {
         Assertions.assertEquals(personGet.getPhone(),"025874");
 
     }
 
+    /**
+     * Sets id.
+     */
     @Test
     void setId() {
         personSet.setId(3l);
@@ -46,6 +67,9 @@ class PersonTest {
 
     }
 
+    /**
+     * Sets name.
+     */
     @Test
     void setName() {
         personSet.setName("test");
@@ -54,6 +78,9 @@ class PersonTest {
 
     }
 
+    /**
+     * Sets adress.
+     */
     @Test
     void setAdress() {
         personSet.setAdress("a");
@@ -62,6 +89,9 @@ class PersonTest {
 
     }
 
+    /**
+     * Sets email.
+     */
     @Test
     void setEmail() {
         personSet.setEmail("é");
@@ -70,6 +100,9 @@ class PersonTest {
 
     }
 
+    /**
+     * Sets phone.
+     */
     @Test
     void setPhone() {
         personSet.setPhone("02");
@@ -78,6 +111,9 @@ class PersonTest {
 
     }
 
+    /**
+     * Test to string.
+     */
     @Test
     void testToString() {
         Assertions.assertNotNull(personGet.toString());
