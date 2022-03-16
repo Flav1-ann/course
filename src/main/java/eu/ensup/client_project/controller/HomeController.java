@@ -22,30 +22,16 @@ public class HomeController {
 
     @GetMapping("/")
     public String viewBase(Model model) {
-        log.info("viewHome");
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-//            return "home";
-//        else
             return "redirect:/login";
     }
     @PostMapping("/home")
     public String viewHome(Model model) {
-        log.info("viewHome");
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
             return "home";
-//        else
-//        return "redirect:/login";
     }
     @GetMapping("/homepage")
     public String homepage(Model model) {
-        log.info("homepage");
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         return "home";
-//        else
-//        return "redirect:/login";
     }
 
 

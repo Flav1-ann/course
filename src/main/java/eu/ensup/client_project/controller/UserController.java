@@ -29,14 +29,12 @@ public class UserController {
 
     @GetMapping("/CreatedUser")
     public String viewCreateUserPage(Model model) {
-        log.info("viewCreateUserPage");
         model.addAttribute("student", new Student());
         return "createdUser";
     }
 
     @GetMapping("/login")
     public String loginPage(Model model,HttpSession session,@RequestParam(value = "error", defaultValue = "false") boolean loginError) {
-        log.info("loginPage");
         session.removeAttribute("error");
         if (loginError) {
             session.setAttribute("error", "Mauvais login ou mot de passe!");
@@ -46,20 +44,18 @@ public class UserController {
 
     @PostMapping("/save")
     public String saveUser(@ModelAttribute Student user,HttpSession session) {
-        log.info("save pour l'utilisateur "+user );
         session.removeAttribute("success");
-        studentRepository.save(user);
         if (!"".equals(user.getEmail()) && !"".equals(user.getLastName())  && !"".equals(user.getName())  && !"".equals(user.getAdress())&& null != user.getBithday() && !"".equals(user.getPhone()))
             if (validate(user.getEmail()))
             {
                 studentRepository.save(user);
+                session.setAttribute("success", "L'étudiant à été créé.");
             }
             else
                 session.setAttribute("error", "L'adresse mail n'est pas sous le bon format");
         else
             session.setAttribute("error", "Tout les champs ne sont pas remplis");
 
-           session.setAttribute("success", "L'étudiant à été créé.");
         return "createdUser";
     }
 
