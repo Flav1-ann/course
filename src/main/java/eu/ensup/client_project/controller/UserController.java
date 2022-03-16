@@ -1,8 +1,7 @@
 package eu.ensup.client_project.controller;
 
-import eu.ensup.client_project.domaine.User;
-import eu.ensup.client_project.service.AuthService;
-import eu.ensup.client_project.service.UserService;
+import eu.ensup.client_project.domaine.Student;
+import eu.ensup.client_project.repository.StudentRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,31 +23,32 @@ import java.util.regex.Pattern;
 @Log4j2
 public class UserController {
 
-    @Autowired
-    private UserService userService;
 
-    @Autowired
-    private AuthService authService;
 
 //    @Autowired
 //    private OrderService orderService;
+    @Autowired
+    private StudentRepository studentRepository;
 
-//    @GetMapping("/register")
-//    public String viewCreateUserPage(Model model) {
-//        log.info("viewCreateUserPage");
-//        model.addAttribute("user", new User());
-//        return "createdUser";
-//    }
+    @GetMapping("/CreatedUser")
+    public String viewCreateUserPage(Model model) {
+        log.info("viewCreateUserPage");
+        model.addAttribute("student", new Student());
+        return "createdUser";
+    }
 
     @GetMapping("/login")
     public String loginPage(Model model,HttpSession session,@RequestParam(value = "error", defaultValue = "false") boolean loginError) {
         log.info("loginPage");
         session.removeAttribute("error");
-        model.addAttribute("user", new User());
         if (loginError) {
             session.setAttribute("error", "Mauvais login ou mot de passe!");
         }
-        return "login";
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        if (principal instanceof User)
+            //return "redirect:/home";
+//        else
+            return "login";
     }
 
 //    @GetMapping("/edit")
@@ -62,9 +62,10 @@ public class UserController {
 //        return "updateUser";
 //    }
 //
-//    @PostMapping("/save")
-//    public String saveUser(@ModelAttribute User user,HttpSession session) {
-//        log.info("save pour l'utilisateur "+user );
+    @PostMapping("/save")
+    public String saveUser(@ModelAttribute Student user,HttpSession session) {
+        log.info("save pour l'utilisateur "+user );
+        studentRepository.save(user);
 //        user.setActivate(true);
 //        if (!"".equals(user.getUsername()) && !"".equals(user.getPassword())  && !"".equals(user.getAddress())  && !"".equals(user.getLastName()))
 //            if (validate(user.getEmail()))
@@ -86,8 +87,9 @@ public class UserController {
 //                session.setAttribute("error", "L'adresse mail n'est pas sous le bon format");
 //        else
 //            session.setAttribute("error", "Tout les champs ne sont pas remplis");
-//        return "createdUser";
-//    }
+           session.setAttribute("success", "L'étudiant à été créé.");
+        return "createdUser";
+    }
 //
 //    @PostMapping("/update")
 //    public String updateUser(@ModelAttribute User user,HttpSession session) {

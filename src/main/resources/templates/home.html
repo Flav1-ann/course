@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org" >
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-<!--  <script async defer type="text/javascript" th:src="@{/assets/script.js}" ></script>-->
-
+  <script async defer type="text/javascript" th:src="@{/assets/script.js}" ></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <!-- Technical needs -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- To support IE8 and IE9 -->
   <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Control layout on mobile -->
 
-    <title>MyResto - Connection</title>
-    <meta name="description" content="Merci de vous connecter afin de pouvoir commander sur MyResto.">
+    <title>MyResto - Notre passion, votre papilles</title>
+    <meta name="description" content="MyResto, est un restaurant incroyable avec vue sur la Tour Eiffel et sur le Taj Mahal.">
     <meta charset="utf-8">
     <meta name="theme-color" content="#141414">
     <meta name="locale" content="en_US">
@@ -58,36 +58,17 @@
     <script src='/cdn-cgi/bm/cv/669835187/api.js' async defer ></script></head>
   <body class="scrollbar-ok">
   
-<!--    <header th:insert=" fragments/header :: header"></header>-->
-  
-    <main>
+    <header th:insert=" fragments/header :: header"></header>
 
-        <div class="main_container--form">
-            <h1 class="_col-12">Se connecter</h1>
-            <div class="_col-12">
-                <span class="error-handler" th:text="${session.error}"></span>
-            </div>
-            <form class="_row" th:action="@{/home}" th:object="${loginForm}" method="post">
-                <div class="form-java_container _row _col-6 _col-sm-12">
-                    <label class="form-java_label _col-12">Login</label>
-                    <input type="text" class="form-java_input _col-12" name="username">
-                </div>
-    
-                <div class="form-java_container _row _col-6 _col-sm-12">
-                    <label class="form-java_label _col-12">Mot de passe</label>
-                    <input type="password" class="form-java_input _col-12"name="password">
-                </div>
-    
-                <div class="_col-12 button-handler">
-                    <button onclick="document.getElementById('menu').scrollIntoView();" class="button--big button-double"
-                            type="submit">Se connecter
-                    </button>
-                </div>
-    
-            </form>
-        </div>
-    
-    </main>
+<main>
+  <div class="main_container--form">
+    <h1>Bienvenu</h1>
+    <div class="_col-12">
+      <span class="error-handler" th:text="${session.error}"></span>
+    </div>
+   <a  th:href="@{/CreatedUser}"> <button type="button" class="btn btn-light">Créer un étudiant</button></a>
+  </div>
+</main>
 
 <!--    <nav th:replace=" fragments/navbarMobile :: navMobile"></nav>-->
 <!--    <footer th:replace=" fragments/footer :: footer"></footer>-->

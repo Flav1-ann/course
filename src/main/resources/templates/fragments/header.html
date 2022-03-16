@@ -1,0 +1,21 @@
+<nav th:fragment="header" class="navbar-music _row" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<!--    <div class="_col-4 navbar-music_container&#45;&#45;left">-->
+<!--        <a class="navbar-music_logo" th:href="@{/}">-->
+<!--            <img src="../static/assets/images/myresto.png" th:src="@{/assets/images/myresto.png}" alt="logo myresto" class="navbar-music_img" />-->
+<!--        </a>-->
+<!--    </div>-->
+    <div class="_col-4 navbar-music_container">
+<!--        <a sec:authorize="isAuthenticated() && hasAuthority('USER')" class="navbar-music_link" th:href="@{/shoppingcard}"><span>Mon panier</span></a>-->
+<!--        <a sec:authorize="isAuthenticated() && hasAuthority('USER')" class="navbar-music_link" th:href="@{/myCommand}"><span>Mes commandes</span></a>-->
+<!--        <a sec:authorize="isAuthenticated() && hasAuthority('GERANT')" class="navbar-music_link" th:href="@{/allCommand}"><span>Les commandes</span></a>-->
+<!--        <a sec:authorize="isAuthenticated() && hasAuthority('GERANT')" class="navbar-music_link" th:href="@{/users}"><span>Les utilisateurs</span></a>-->
+<!--        <a sec:authorize="isAuthenticated() && hasAuthority('GERANT')" class="navbar-music_link" th:href="@{/Stats}"><span>Les statistiques</span></a>-->
+        <a  class="navbar-music_link" th:href="@{/homepage}"><span>home</span></a>
+    </div>
+<!--    <div class="_col-4 navbar-music_container&#45;&#45;right" >-->
+<!--        <a sec:authorize="!isAuthenticated()" class="navbar-music_link" th:href="@{/login}"><span>Se connecter</span></a>-->
+<!--        <a sec:authorize="!isAuthenticated()" class="navbar-music_link" th:href="@{/register}"><span>Se créer un compte</span></a>-->
+<!--        <a sec:authorize="isAuthenticated() && hasAuthority('USER')" class="navbar-music_link" th:href="@{/edit}"><span><i class="fas fa-user"></i></span></a>-->
+<!--        <a sec:authorize="isAuthenticated()" class="navbar-music_link" th:href="@{/logout}"><span><i class="fas fa-sign-out-alt"></i></span></a>-->
+<!--    </div>-->
+</nav>

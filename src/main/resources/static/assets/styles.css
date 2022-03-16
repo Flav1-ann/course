@@ -1204,5 +1204,8 @@ textarea.form-java_input{
 .error-handler{
     background-color: var(--color-main);color: var(--color-opposite);box-sizing:border-box
 }
+.sucess-handler{
+    background-color: green;color: var(--color-opposite);box-sizing:border-box
+}
 
 /* #endregion */
