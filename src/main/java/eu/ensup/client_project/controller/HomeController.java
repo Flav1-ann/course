@@ -24,7 +24,7 @@ public class HomeController {
     public String viewBase(Model model) {
             return "redirect:/login";
     }
-    @PostMapping("/home")
+    @GetMapping("/home")
     public String viewHome(Model model) {
             return "home";
     }

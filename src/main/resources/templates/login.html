@@ -67,7 +67,7 @@
             <div class="_col-12">
                 <span class="error-handler" th:text="${session.error}"></span>
             </div>
-            <form class="_row" th:action="@{/home}" th:object="${loginForm}" method="post">
+            <form class="_row" th:action="@{/home}" th:object="${loginForm}" method="get">
                 <div class="form-java_container _row _col-6 _col-sm-12">
                     <label class="form-java_label _col-12">Login</label>
                     <input type="text" class="form-java_input _col-12" name="username">
