@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 /**
  * The type User controller.
@@ -81,6 +82,15 @@ public class UserController {
             session.setAttribute("error", "Tout les champs ne sont pas remplis");
 
         return "createdUser";
+    }
+
+    @GetMapping("/getall")
+    public String getAll(Model model) {
+        var allStudents = studentRepository.findAll();
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+            model.addAttribute("students", allStudents);
+        return "userList";
     }
 
     /**

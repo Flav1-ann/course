@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://thymeleaf.org"  >
 <head>
   <script async defer type="text/javascript" th:src="@{/assets/script.js}" ></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <!-- Technical needs -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- To support IE8 and IE9 -->
   <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Control layout on mobile -->
 
-    <title>ENSITECH </title>
-    <meta name="description" content="ENSITECH , est un restaurant incroyable avec vue sur la Tour Eiffel et sur le Taj Mahal.">
+    <title>MyResto - Liste des utilisateurs</title>
+    <meta name="description" content="Tu es admin, tu peux controller qui est sur ton site.">
     <meta charset="utf-8">
     <meta name="theme-color" content="#141414">
     <meta name="locale" content="en_US">
@@ -59,20 +59,29 @@
   <body class="scrollbar-ok">
   
     <header th:insert=" fragments/header :: header"></header>
+  
+    <main>
+        <div class="main_container--form">
+            <div class="_row">
+                <h1 class="_col-12">Liste des étudiants</h1>
+                <table class="table-spring _col-12 scrollbar-ok">
+                    <tbody>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Email</th>
+                    </tr>
+                    <tr th:each="student: ${students}">
+                        <td th:text="${student.name}" />
+                        <td th:text="${student.email}" />
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
 
-<main>
-  <div class="main_container--form">
-    <h1>Bienvenu</h1>
-    <div class="_col-12">
-      <span class="error-handler" th:text="${session.error}"></span>
-    </div>
-   <a  th:href="@{/CreatedUser}"> <button type="button" class="btn btn-light">Créer un étudiant</button></a>
-   <a  th:href="@{/getall}"> <button type="button" class="btn btn-light">Tout les étudiants</button></a>
-  </div>
-</main>
-
-<!--    <nav th:replace=" fragments/navbarMobile :: navMobile"></nav>-->
-<!--    <footer th:replace=" fragments/footer :: footer"></footer>-->
+    <nav th:replace=" fragments/navbarMobile :: navMobile"></nav>
+    <footer th:replace=" fragments/footer :: footer"></footer>
   
   </body>
   </html>
